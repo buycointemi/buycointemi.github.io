@@ -149,7 +149,7 @@ let fetchGithubRepo = function(user){
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': 'Bearer 2c93e405f3579b464af7897dbb143235c3fe1ff3'
+            'Authorization': 'Bearer 96347ddfec801879867187da23d346c1ff5897c0'
         },
         body: JSON.stringify(apiBody)
     };
