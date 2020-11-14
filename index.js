@@ -141,7 +141,7 @@ let fetchGithubRepo = function(user){
                     }
                 }
             }`,
-        variables: { "username": `${user}`}
+        variables: { "username": `${user.username}`}
     };
 
     let apiOptions = {
@@ -149,7 +149,7 @@ let fetchGithubRepo = function(user){
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': 'Bearer 96347ddfec801879867187da23d346c1ff5897c0'
+            'Authorization': 'Bearer ' + user.token
         },
         body: JSON.stringify(apiBody)
     };
@@ -178,5 +178,14 @@ let fetchGithubRepo = function(user){
 
 //EXECUTE ON DOCUMENT LOAD HERE...
 document.addEventListener("DOMContentLoaded", function (ev) {
-    fetchGithubRepo("buycointemi");
+    let user = [
+        {
+            username: "tehmi2000",
+            token: '2c93e405f3579b464af7897dbb143235c3fe1ff3'
+        }, {
+            username: "buycointemi",
+            token: 'cfca2d148742ed2107827ad527d10da3b6e55730'
+        }
+    ];
+    fetchGithubRepo(user[1]);
 });
