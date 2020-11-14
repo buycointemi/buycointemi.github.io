@@ -178,5 +178,5 @@ let fetchGithubRepo = function(user){
 
 //EXECUTE ON DOCUMENT LOAD HERE...
 document.addEventListener("DOMContentLoaded", function (ev) {
-    fetchGithubRepo("tehmi2000");
+    fetchGithubRepo("buycointemi");
 });
