@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Repositories</title>
+    <link rel="stylesheet" href="./icofont/icofont.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+</head>
+<body>
+    <header class="rows">
+        <div class="left-elements show-on-mobile">
+            <button class="icofont-navigation-menu strip-btn" style="color: white;"></button>
+        </div>
+
+        <div class="rows middle-elements">
+            <a href="#" class="github-icon">
+                <svg class="octicon octicon-mark-github" height="32" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            </a>
+
+            <form action="" method="GET" class="rows search-form hide-on-mobile">
+                <input type="text" name="search-bar-name" id="search-bar" placeholder="Search or jump to...">
+                <label for="search-bar">/</label>
+            </form>
+
+            <nav class="navigation-links hide-on-mobile">
+                <a href="#">Pulls</a>
+                <a href="#">Issues</a>
+                <a href="#">Marketplace</a>
+                <a href="#">Issues</a>
+            </nav>
+        </div>
+
+        <div class="rows left-elements">
+            <span class="notification-element">
+                <span class="unread"></span>
+                <svg class="octicon octicon-bell" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 16a2 2 0 001.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 008 16z"></path><path fill-rule="evenodd" d="M8 1.5A3.5 3.5 0 004.5 5v2.947c0 .346-.102.683-.294.97l-1.703 2.556a.018.018 0 00-.003.01l.001.006c0 .002.002.004.004.006a.017.017 0 00.006.004l.007.001h10.964l.007-.001a.016.016 0 00.006-.004.016.016 0 00.004-.006l.001-.007a.017.017 0 00-.003-.01l-1.703-2.554a1.75 1.75 0 01-.294-.97V5A3.5 3.5 0 008 1.5zM3 5a5 5 0 0110 0v2.947c0 .05.015.098.042.139l1.703 2.555A1.518 1.518 0 0113.482 13H2.518a1.518 1.518 0 01-1.263-2.36l1.703-2.554A.25.25 0 003 7.947V5z"></path></svg>
+            </span>
+
+            <span class="add-element hide-on-mobile">
+                <span class="icofont-plus" style="font-size: 1.2rem;"></span>
+                <span class="icofont-caret-down" style="font-size: 1.1rem;"></span>
+            </span>
+
+            <span class="rows user-profile hide-on-mobile">
+                <img class="user-profile-picture" src="user_picture.jpg" alt="">
+                <span class="icofont-caret-down" style="font-size: 1.1rem;"></span>
+            </span>
+        </div>
+    </header>
+
+    <nav class="cols show-on-mobile mobile-navigation-menu closed">
+        <form action="" method="GET" class="rows search-form">
+            <input type="text" name="search-bar-name" id="search-bar" placeholder="Search">
+        </form>
+        <div class="lg-100 cols mobile-navigation-links">
+            <a href="#">Dashboard</a>
+            <a href="#">Pull requests</a>
+            <a href="#">Issues</a>
+            <a href="#">Marketplace</a>
+            <a href="#">Explore</a>
+            <a href="#" class="rows">
+                <img class="user-profile-picture" src="user_picture.jpg" alt="" width="16" height="16" />
+                <span>Username</span>
+            </a>
+            <a href="#" class="rows">
+                <div class="icofont-logout" style="margin-right: 0.5rem; margin-bottom: -2px;"></div>
+                <span>Sign out</span>
+            </a>
+        </div>
+    </nav>
+
+    <noscript> Javascript not supported. Please switch to a more recent version of this browser or a different one.</noscript>
+    
+    <main class="cols">
+        <div class="cols user-profile-section">
+            <div>
+                <img class="user-profile-picture" src="user_picture.jpg" alt="" width="120" height="120">
+                <span></span>
+            </div>
+            
+            <span>Username</span>
+        </div>
+        <div class="repository-section">
+            <nav class="nav-tab-wrapper" style="border-bottom: 1px solid #ddd; width: 100%; overflow-x: auto;">
+                <div class="rows slider">
+                    <span class="rows nav-tab">
+                        <span class="tab-name">Overview</span>
+                        <span class="tab-notice none">0</span>
+                    </span>
+
+                    <span class="rows nav-tab active">
+                        <span class="tab-name">Repositories</span>
+                        <span id="repo-notice" class="tab-notice">-</span>
+                    </span>
+
+                    <span class="rows nav-tab">
+                        <span class="tab-name">Projects</span>
+                        <span class="tab-notice none">0</span>
+                    </span>
+
+                    <span class="rows nav-tab">
+                        <span class="tab-name">Packages</span>
+                        <span class="tab-notice none">0</span>
+                    </span>
+                </div>
+            </nav>
+            <div class="section-content">
+                <div class="section-content-controls">
+                    <form action="">
+                        <input type="text" class="repo-search-bar" placeholder="Find a repository...">
+                    </form>
+                </div>
+                <div id="repository-container">
+                    <div class="cols dummy repo-item">
+                        <div class="rows">
+                            <div class="lg-100 cols">
+                                <h3 class="repo-item-name pad lazy-loading"></h3>
+                                <span class="repo-item-source pad lazy-loading"></span>
+                                <div class="repo-item-description pad lazy-loading"></div>
+                            </div>
+
+                            <div class="rows repo-star-btn pad lazy-loading"> </div>
+                        </div>
+                        <span class="rows repo-item-details">
+                            <span class="rows detail-item"><i class="icon circle lazy-loading"></i><span class="pad lazy-loading"></span></span>
+                            <span class="rows detail-item"><i class="icon circle lazy-loading"></i><span class="pad lazy-loading"></span></span>
+                            <span class="rows detail-item"><i class="icon circle lazy-loading"></i><span class="pad lazy-loading"></span></span>
+                            <span class="rows detail-item"><i class="icon circle lazy-loading"></i><span class="pad lazy-loading"></span></span>
+                        </span>
+                    </div>
+
+                    <div class="cols dummy repo-item">
+                        <div class="rows">
+                            <div class="lg-100 cols">
+                                <h3 class="repo-item-name pad lazy-loading"></h3>
+                                <span class="repo-item-source pad lazy-loading"></span>
+                                <div class="repo-item-description pad lazy-loading"></div>
+                            </div>
+
+                            <div class="rows repo-star-btn pad lazy-loading"> </div>
+                        </div>
+                        <span class="rows repo-item-details">
+                            <span class="rows detail-item"><i class="icon circle lazy-loading"></i><span class="pad lazy-loading"></span></span>
+                            <span class="rows detail-item"><i class="icon circle lazy-loading"></i><span class="pad lazy-loading"></span></span>
+                            <span class="rows detail-item"><i class="icon circle lazy-loading"></i><span class="pad lazy-loading"></span></span>
+                            <span class="rows detail-item"><i class="icon circle lazy-loading"></i><span class="pad lazy-loading"></span></span>
+                        </span>
+                    </div>
+
+                    <div class="cols dummy repo-item">
+                        <div class="rows">
+                            <div class="lg-100 cols">
+                                <h3 class="repo-item-name pad lazy-loading"></h3>
+                                <span class="repo-item-source pad lazy-loading"></span>
+                                <div class="repo-item-description pad lazy-loading"></div>
+                            </div>
+
+                            <div class="rows repo-star-btn pad lazy-loading"> </div>
+                        </div>
+                        <span class="rows repo-item-details">
+                            <span class="rows detail-item"><i class="icon circle lazy-loading"></i><span class="pad lazy-loading"></span></span>
+                            <span class="rows detail-item"><i class="icon circle lazy-loading"></i><span class="pad lazy-loading"></span></span>
+                            <span class="rows detail-item"><i class="icon circle lazy-loading"></i><span class="pad lazy-loading"></span></span>
+                            <span class="rows detail-item"><i class="icon circle lazy-loading"></i><span class="pad lazy-loading"></span></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="rows">
+        <span>&copy; 2020 Github, Inc.</span>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Security</a>
+        <a href="#">Status</a>
+        <a href="#">Help</a>
+        <a href="#">Contact Github</a>
+        <a href="#">Pricing</a>
+        <a href="#">API</a>
+        <a href="#">Training</a>
+        <a href="#">Blog</a>
+        <a href="#">About</a>
+    </footer>
+
+    <script>
+        let menuButton = document.querySelector("header .left-elements button.icofont-navigation-menu");
+        let menu = document.querySelector("header + nav.mobile-navigation-menu");
+        menuButton.addEventListener("click", function (ev) {
+            if(menu.classList.contains("closed") === true){
+                menu.classList.remove("closed");
+            }else{
+                menu.classList.add("closed");
+            }
+        });
+    </script>
+</body>
+</html>

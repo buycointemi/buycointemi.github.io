@@ -1,0 +1,418 @@
+/* Mobile First */
+body{
+    --separation-line-color: #dfdfdf;
+    background-color: var(--page-bg-color);
+}
+
+img.user-profile-picture{
+    border-radius: 50%;
+}
+
+form.search-form{
+    border: 1px solid #646464;
+    background-color: transparent;
+    border-radius: 4px;
+    width: auto;
+    overflow: hidden;
+}
+
+form.search-form *{
+    background-color: transparent;
+    border: none;
+    color: white;
+    outline: none;
+}
+
+form.search-form label{
+    border: 1px solid #646464;
+    padding: 0.2rem;
+    min-width: 2rem;
+    min-height: 2rem;
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 4px;
+    margin: auto 0.5rem;
+}
+
+form.search-form input{
+    padding: 0.6rem 1rem;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+form.search-form input:focus + label{
+    display: none;
+}
+
+header, header .rows, header + nav.mobile-navigation-menu .rows{
+    align-items: center;
+}
+
+header, header + nav.mobile-navigation-menu{
+    background-color: var(--header-bg-color);
+}
+
+header{
+    color: white;
+    justify-content: space-between;
+    padding: 1.2rem;
+    height: 6.4rem;
+}
+
+header [class^="icofont-"]{
+    font-size: 2rem;
+}
+
+header .left-elements > *{
+    margin: auto 0.6rem;
+}
+
+header .octicon{
+    fill: white;
+}
+
+header .notification-element{
+    position: relative;
+}
+
+header .notification-element .unread{
+    position: absolute;
+    background-image: linear-gradient(10deg, rgb(14, 46, 190), rgb(45, 80, 236));
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    z-index: +990;
+    left: 60%;
+    top: -4%;
+    box-shadow: inset 0 0 1px rgba(134, 134, 134, 0.2);
+    /* transform: translate(130%, -5%); */
+}
+
+header .notification-element .unread::before{
+    content: "";
+    position: absolute;
+    border: 1px solid var(--header-bg-color);
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    left: -0.1rem;
+    top: -0.1rem;
+}
+
+header nav.navigation-links a{
+    color: white;
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin: 0 0.4rem;
+}
+
+header .left-elements .user-profile img{
+    display: block;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 50%;
+    margin-right: 0.2rem;
+}
+
+header + nav.mobile-navigation-menu{
+    padding: 0 1rem 2rem 1rem;
+}
+
+header + nav.mobile-navigation-menu.closed{
+    display: none !important;
+}
+
+header + nav.mobile-navigation-menu .mobile-navigation-links{
+    margin-top: 1.5rem;
+}
+
+nav.mobile-navigation-menu .mobile-navigation-links > *{
+    border-top: 1px solid #474747;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.3rem;
+    padding: 0.8rem 0;
+}
+
+nav.mobile-navigation-menu .mobile-navigation-links img{
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+main{
+    height: auto;
+    max-height: unset;
+    min-height: calc(100vh - 6.4rem);
+    /* overflow-y: auto; */
+}
+
+main > *{
+    width: 100%;
+    margin-bottom: 0.3rem;
+}
+
+.repository-section .section-content, main .user-profile-section{
+    padding: 1.1rem 1.6rem;
+}
+
+main .user-profile-section{
+    height: 50vh;
+    /* background-color: orange; */
+}
+
+.repository-section nav.nav-tab-wrapper{
+    background-color: var(--page-bg-color);
+    z-index: +999;
+}
+
+.repository-section .nav-tab{
+    font-size: 1.25rem;
+    padding: 1.2rem;
+    margin: 0 0.2rem;
+    align-items: center;
+}
+
+.repository-section .nav-tab:hover{
+    cursor: pointer;
+}
+
+.repository-section .nav-tab.active{
+    border-bottom: 2px solid orangered;
+}
+
+.repository-section .nav-tab .tab-name{
+    margin-right: 0.7rem;
+}
+
+.repository-section .nav-tab.active .tab-name{
+    font-weight: 600;
+}
+
+.repository-section .nav-tab .tab-notice{
+    display: inline-block;
+    font-size: 1rem;
+    background-color: #ddd;
+    border-radius: 10px;
+    padding: 0.1rem 0.5rem;
+    text-align: center;
+}
+
+.repository-section .section-content-controls input.repo-search-bar{
+    border: 1px solid #bbb;
+    background-color: transparent;
+    border-radius: 4px;
+    padding: 0.6rem 1rem;
+    width: 100%;
+    max-width: 460px;
+}
+
+.repository-section #repository-container{
+    margin-top: 2rem;
+}
+
+.repository-section #repository-container .no-repo-text{
+    text-align: center;
+    height: 200px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 600;
+    border-top: 1px solid var(--separation-line-color);
+    border-bottom: 1px solid var(--separation-line-color);
+}
+
+#repository-container .repo-item{
+    color: #333;
+    font-size: 1rem;
+    border-top: 1px solid var(--separation-line-color);
+    /* border-bottom: 1px solid var(--separation-line-color); */
+    padding: 2rem 0;
+}
+
+#repository-container .repo-item:last-child{
+    border-bottom: 1px solid var(--separation-line-color);
+}
+
+#repository-container .repo-item .icon{
+    display: block;
+    margin-right: 0.4rem;
+    margin-top: 0.2rem;
+    color: #555;
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+#repository-container .repo-item > *:first-child{
+    justify-content: space-between;
+    align-items: center;
+}
+
+#repository-container .repo-item .repo-item-name{
+    font-size: 1.9rem;
+    font-weight: 600;
+    margin: 0.3rem 0;
+    color: rgb(0, 41, 226);
+}
+
+#repository-container .repo-item .repo-item-source{
+    margin: 0.5rem 0;
+    max-width: 65%;
+    color: #444;
+}
+
+#repository-container .repo-item .repo-item-description{
+    font-size: 1.2rem;
+    line-height: 1.5;
+    max-width: 65%;
+}
+
+#repository-container .repo-item .repo-star-btn{
+    padding: 0.5rem 0.8rem;
+    background-color: transparent;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    color: #333;
+}
+
+#repository-container .repo-item .repo-item-details{
+    line-height: 1.5;
+    width: 100%;
+    margin-top: 1.5rem;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#repository-container .repo-item .repo-item-details > *{
+    margin-right: 1.5rem;
+}
+
+#repository-container .repo-item .repo-item-details [class*="icofont-"]{
+    display: inline-block;
+    font-size: 1.15rem;
+}
+
+#repository-container .repo-item .repo-item-details .circle{
+    background-color: #555;
+    border-radius: 50%;
+}
+
+
+
+#repository-container .dummy.repo-item .pad{
+    padding: 0.5rem !important;
+    min-width: 2rem;
+    border-radius: 5px;
+    opacity: 0.8;
+}
+
+#repository-container .dummy.repo-item .repo-item-name{
+    max-width: 65%;
+    padding: 0.7rem !important;
+}
+
+#repository-container .dummy.repo-item .repo-item-source{
+    max-width: 50%;
+    opacity: 0.7;
+}
+
+#repository-container .dummy.repo-item .repo-item-description{
+    padding: 3rem !important;
+    margin-top: 0.7rem;
+    max-width: 70%;
+}
+
+#repository-container .dummy.repo-item .repo-star-btn{
+    /* padding: 3rem !important;
+    margin-top: 0.7rem;
+    max-width: 70%; */
+    width: 5rem;
+    height: 3rem;
+}
+
+#repository-container .dummy.repo-item .repo-item-details{
+    margin-top: 3rem;
+    width: 90%;
+}
+
+#repository-container .dummy.repo-item .repo-item-details > *{
+    width: 20%;
+}
+
+#repository-container .dummy.repo-item .repo-item-details span.pad{
+    display: block;
+    width: 80% !important;
+    padding: 0.5rem !important;
+}
+
+
+footer{
+    position: relative;
+    border-top: 1px solid var(--separation-line-color);
+    padding: 5rem 0;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: calc(100% - 2rem);
+    color: #474747;
+}
+
+footer > *{
+    font-size: 1.2rem;
+    margin: 0.2rem 1rem;
+}
+
+/* For tablet users */
+
+/* For all mobile users only */
+@media only screen and (max-width:799px){
+    .hide-on-mobile{
+        display: none !important;
+    }
+
+    .repository-section nav.nav-tab-wrapper{
+        position: sticky;
+        top: 0;
+    }
+}
+
+/* For desktop users */
+@media only screen and (min-width:800px){
+    .show-on-mobile{
+        display: none !important;
+    }
+
+    form.search-form{
+        margin: 0 2rem;
+        min-width: 27rem;
+    }
+
+    form.search-form input:focus{
+        background-color: #ffffff;
+        min-width: 30rem;
+        width: 30vw;
+    }
+
+    main{
+        flex-direction: row !important;
+    }
+
+    main > *{
+        margin-top: 3rem;
+    }
+
+    main .user-profile-section{
+        width: 30%;
+    }
+
+    main .repository-section{
+        width: 70%;
+    }
+
+    .repository-section .section-content-controls input.repo-search-bar{
+        max-width: 500px;
+    }
+}
