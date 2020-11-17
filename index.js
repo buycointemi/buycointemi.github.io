@@ -160,7 +160,7 @@ let fetchGithubRepo = function(user){
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': 'Bearer ' + user.token
+            // 'Authorization': 'Bearer ' + user.token
         },
         body: JSON.stringify(apiBody)
     };
