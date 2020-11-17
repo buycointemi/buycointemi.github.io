@@ -164,16 +164,16 @@ main .user-profile-section .img-wrapper{
 }
 
 main .user-profile-section img{
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     margin-right: 2rem;
     margin-bottom: 1.3rem;
 }
 
 main .user-profile-section .username{
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: #757575;
+    font-size: 2rem;
+    font-weight: 300;
+    color: #444;
     text-transform: lowercase;
 }
 
@@ -181,9 +181,9 @@ main .user-profile-section button{
     font-size: 1.25rem;
     color: #3d3d3d;
     border: 1px solid #dcdcdc;
-    padding: 0.8rem 0.6rem;
+    padding: 0.6rem 1rem;
     border-radius: 5px;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
 }
 
 .repository-section nav.nav-tab-wrapper{
@@ -354,9 +354,6 @@ main .user-profile-section button{
 }
 
 #repository-container .dummy.repo-item .repo-star-btn{
-    /* padding: 3rem !important;
-    margin-top: 0.7rem;
-    max-width: 70%; */
     width: 5rem;
     height: 3rem;
 }
@@ -409,6 +406,10 @@ footer > a:link{
     .repository-section nav.nav-tab-wrapper{
         position: sticky;
         top: 0;
+    }
+
+    main .user-profile-section{
+        padding-top: 0;
     }
 }
 
