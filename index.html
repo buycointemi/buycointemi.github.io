@@ -62,11 +62,11 @@
             <a href="#">Marketplace</a>
             <a href="#">Explore</a>
             <a href="#" class="rows">
-                <img class="user-profile-picture" src="user_picture.jpg" alt="" width="16" height="16" />
+                <img class="user-profile-picture" src="user_picture.jpg" alt="" width="17" height="17" />
                 <span>Username</span>
             </a>
             <a href="#" class="rows">
-                <div class="icofont-logout" style="margin-right: 0.5rem; margin-bottom: -2px;"></div>
+                <div class="icofont-logout" style="margin-right: 0.7rem; margin-bottom: -2px;"></div>
                 <span>Sign out</span>
             </a>
         </div>
@@ -76,32 +76,41 @@
     
     <main class="cols">
         <div class="cols user-profile-section">
-            <div>
-                <img class="user-profile-picture" src="user_picture.jpg" alt="" width="120" height="120">
-                <span></span>
-            </div>
+            <!-- Horizontal for PC viewers -->
+            <div class="hide-on-mobile" style="position: absolute; border-bottom: 1px solid #eee; width: 50%; margin-top: 3.1rem; left: 0; z-index: -1;"></div>
             
-            <span>Username</span>
+            <div class="rows img-wrapper">
+                <img class="user-profile-picture" src="user_picture.jpg" alt="" width="120" height="120">
+                <span class="username">Username</span>
+            </div>
+
+            <button class="strip-btn user-status" style="text-align: left;"><i class="icofont-slightly-smile"></i> <span class="show-on-mobile" style="font-size: 1.1rem;">Set status</span> </button>
+            <button class="strip-btn" style="font-weight: 500;">Edit profile</button>
         </div>
+
         <div class="repository-section">
-            <nav class="nav-tab-wrapper" style="border-bottom: 1px solid #ddd; width: 100%; overflow-x: auto;">
+            <nav class="nav-tab-wrapper" style="border-bottom: 1px solid #eee; width: 100%; overflow-x: auto;">
                 <div class="rows slider">
                     <span class="rows nav-tab">
+                        <span class="icon icofont-book hide-on-mobile"></span>
                         <span class="tab-name">Overview</span>
                         <span class="tab-notice none">0</span>
                     </span>
 
                     <span class="rows nav-tab active">
+                        <span class="icon icofont-book-alt hide-on-mobile"></span>
                         <span class="tab-name">Repositories</span>
                         <span id="repo-notice" class="tab-notice">-</span>
                     </span>
 
                     <span class="rows nav-tab">
+                        <span class="icon icofont-tasks-alt hide-on-mobile"></span>
                         <span class="tab-name">Projects</span>
                         <span class="tab-notice none">0</span>
                     </span>
 
                     <span class="rows nav-tab">
+                        <span class="icon icofont-cube hide-on-mobile"></span>
                         <span class="tab-name">Packages</span>
                         <span class="tab-notice none">0</span>
                     </span>

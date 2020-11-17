@@ -19,6 +19,17 @@ let testData = [
         primaryLanguage: {
             name: "HTML"
         }
+    }, {
+        id: "MDQ6VXNlcjQ4NjY4ODkw",
+        name: "Ecomm-Project",
+        description: "An ecommerce website",
+        isFork: false,
+        forkCount: 3,
+        stargazerCount: 1,
+        licenseInfo: null,
+        primaryLanguage: {
+            name: "Javascript"
+        }
     }  
 ];
 
@@ -53,7 +64,7 @@ const createComponent = function (elementType, value, classList) {
 
     if(classList){
         classList.forEach(className => {
-            if (className !== null) component.classList.add(className);
+            if (className !== null && className !== "null") component.classList.add(className);
         });
     }
     return component;
@@ -97,7 +108,7 @@ const createRepoItem = function (container, itemList) {
         }
 
         if (item.stargazerCount) starElement.innerHTML = `<i class="icon icofont-ui-rate-blank"></i>${item.stargazerCount}`;
-        if (item.forks) forkElement.innerHTML = `<i class="icon icofont-chart-flow-2"></i>${item.forkCount}`;
+        if (item.forkCount > 0) forkElement.innerHTML = `<i class="icon icofont-chart-flow-2"></i>${item.forkCount}`;
         if (item.licenseInfo !== null) licenseElement.innerHTML = `<i class="icon icofont-law"></i>${item.licenseInfo.name}`;
 
         div10 = joinComponent(div10, repoName, repoSource, repoDesc);
@@ -154,6 +165,12 @@ let fetchGithubRepo = function(user){
         body: JSON.stringify(apiBody)
     };
 
+    const createRepoWithTestData = function(fetchError) {
+        repoCountElement.innerHTML = testData.length;
+        createRepoItem(repoContainer, testData);
+        console.error(fetchError);
+    };
+
     // Asynchronous fetch from 'apiUrl'
     fetch(apiUrl, apiOptions).then(async response => {
         try{
@@ -164,15 +181,13 @@ let fetchGithubRepo = function(user){
                 // Use data received to create repository in DOM
                 createRepoItem(repoContainer, repos.nodes);
             }else{
-                console.log(result);
+                createRepoWithTestData(result);
             }
         }catch(error){
             console.error(error);
         }
     }).catch(error => {
-        repoCountElement.innerHTML = testData.length;
-        createRepoItem(repoContainer, testData);
-        console.error(error);
+        createRepoWithTestData(error);
     })
 };
 
@@ -180,12 +195,9 @@ let fetchGithubRepo = function(user){
 document.addEventListener("DOMContentLoaded", function (ev) {
     let user = [
         {
-            username: "tehmi2000",
-            token: '2c93e405f3579b464af7897dbb143235c3fe1ff3'
-        }, {
             username: "buycointemi",
-            token: 'cfca2d148742ed2107827ad527d10da3b6e55730'
+            token: 'e0c0b6a8f375f0b3babea4139239ab6c01a44c73'
         }
     ];
-    fetchGithubRepo(user[1]);
+    fetchGithubRepo(user[0]);
 });
