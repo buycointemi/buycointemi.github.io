@@ -167,7 +167,7 @@ main .user-profile-section img{
     width: 60px;
     height: 60px;
     margin-right: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.3rem;
 }
 
 main .user-profile-section .username{
@@ -181,7 +181,7 @@ main .user-profile-section button{
     font-size: 1.25rem;
     color: #3d3d3d;
     border: 1px solid #dcdcdc;
-    padding: 0.5rem;
+    padding: 0.8rem 0.6rem;
     border-radius: 5px;
     margin-top: 1rem;
 }
@@ -192,7 +192,7 @@ main .user-profile-section button{
 }
 
 .repository-section .nav-tab{
-    font-size: 1.28rem;
+    font-size: 1.3rem;
     padding: 1.2rem;
     margin: 0 0.2rem;
     align-items: center;
@@ -218,7 +218,7 @@ main .user-profile-section button{
 
 .repository-section .nav-tab .tab-notice{
     display: inline-block;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     background-color: #ddd;
     border-radius: 10px;
     padding: 0.1rem 0.5rem;
@@ -254,7 +254,7 @@ main .user-profile-section button{
 
 #repository-container .repo-item{
     color: #333;
-    font-size: 1rem;
+    font-size: 1.1rem;
     border-top: 1px solid var(--separation-line-color);
     /* border-bottom: 1px solid var(--separation-line-color); */
     padding: 2rem 0;
@@ -279,7 +279,7 @@ main .user-profile-section button{
 }
 
 #repository-container .repo-item .repo-item-name{
-    font-size: 1.9rem;
+    font-size: 1.95rem;
     font-weight: 600;
     margin: 0.3rem 0;
     color: rgb(23, 60, 228);
@@ -292,7 +292,7 @@ main .user-profile-section button{
 }
 
 #repository-container .repo-item .repo-item-description{
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     line-height: 1.5;
     max-width: 65%;
 }
