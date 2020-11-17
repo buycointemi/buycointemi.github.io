@@ -1,39 +1,46 @@
-let testData = [
-    {
-        id: "MDQ6VXNlcjQ4NjY4ODkw",
-        name: "404Project",
-        description: null,
-        isFork: false,
-        forkCount: 0,
-        stargazerCount: 0,
-        licenseInfo: null,
-        primaryLanguage: null
-    }, {
-        id: "MDQ6VXNlcjQ4NjY4ODkw",
-        name: "animaide",
-        description: "AnimAide is a free add-on for Blender that has some helpful tools for animation.",
-        isFork: true,
-        forkCount: 0,
-        stargazerCount: 0,
-        licenseInfo: null,
-        primaryLanguage: {
-            name: "HTML"
-        }
-    }, {
-        id: "MDQ6VXNlcjQ4NjY4ODkw",
-        name: "Ecomm-Project",
-        description: "An ecommerce website",
-        isFork: false,
-        forkCount: 3,
-        stargazerCount: 1,
-        licenseInfo: null,
-        primaryLanguage: {
-            name: "Javascript"
-        }
-    }  
-];
+let listOfValidToken = [null, 'MDQ6VXNlcjQ4NjY4ODkw', 'MDQ6VXNlcjQ5ajY4ODkw', 'MDQde4XNlcjQ4NjY4ODkw']; // variable used to create valid tokens
+let testData = {
+    user: {
+        login: "Dummy User",
+        avatar: "user_picture.jpg",
+        repositories: [
+            {
+                id: "MDQ6VXNlcjQ4NjY4ODkw",
+                name: "Dummy Repo 1",
+                description: null,
+                isFork: false,
+                forkCount: 0,
+                stargazerCount: 0,
+                licenseInfo: null,
+                primaryLanguage: null
+            }, {
+                id: "MDQ6VXNlcjQ4NjY4ODkw",
+                name: "Dummy Repo 2",
+                description: "No description",
+                isFork: true,
+                forkCount: 0,
+                stargazerCount: 0,
+                licenseInfo: null,
+                primaryLanguage: {
+                    name: "HTML"
+                }
+            }, {
+                id: "MDQ6VXNlcjQ4NjY4ODkw",
+                name: "Dummy Repo 3",
+                description: "No description",
+                isFork: false,
+                forkCount: 3,
+                stargazerCount: 1,
+                licenseInfo: null,
+                primaryLanguage: {
+                    name: "Javascript"
+                }
+            }
+        ]
+    }
+};
 
-let fileTypeAndColor = {
+const fileTypeAndColor = {
     javascript: "#f3f301",
     python: "#2c7cf3",
     html: " #e42200"
@@ -77,9 +84,57 @@ const joinComponent = function (container, ...components) {
     return container;
 };
 
+const getUnusedToken = function () {
+    let returnToken = null;
+    // If sessionStorage is supported in user browser, use reliable method
+    if ('sessionStorage' in window) {
+        
+        if (sessionStorage.length === 0) { // tokens havent been set before, set it and return valid token...
+            let tokenList = listOfValidToken;
+            let lastIndex = tokenList.length - 1;
+
+            tokenList.forEach((token, index) => {
+                if (index !== 0) {
+                    sessionStorage.setItem(`token-${index}`, token);
+                }else{
+                    sessionStorage.setItem(`token-null`, token);
+                }
+            });
+
+            returnToken = tokenList[lastIndex];
+
+        }else if(sessionStorage.length === 1) { // All valid tokens have been used up
+            returnToken = null;
+        }else{
+            let lastIndex = sessionStorage.length - 1;
+            returnToken = sessionStorage.getItem(`token-${lastIndex}`);
+            sessionStorage.removeItem(`token-${lastIndex}`);
+            console.log(true);
+        }
+    }else{
+        // Else use alternative method...
+        // Select random token to use...
+        let randomIndex =  Math.round(Math.random() * (listOfValidToken.length - 2)) + 1; // [0, 1, 2,...n] + 1
+        returnToken = listOfValidToken[randomIndex];
+        console.log(randomIndex, returnToken);
+        listOfValidToken.pop();
+    }
+
+    return returnToken;    
+};
+
+const displayUserData = userData => {
+    // Set username
+    document.querySelector("main .user-profile-section .username").textContent = `${userData.login}`;
+    // Set profile picture
+    document.querySelectorAll("img.user-profile-picture").forEach(element => {
+        element.src = userData.avatar;
+    });
+};
+
 const createRepoItem = function (container, itemList) {
     itemList = itemList.slice(0, 20);
-    // Empty the repository container
+    // Clear dummy load elements in repository container
     container.innerHTML = "";
     // Use data list to create repo and append to DOM
     itemList.forEach(item => {
@@ -128,11 +183,22 @@ let fetchGithubRepo = function(user){
     let repoContainer = document.querySelector(".repository-section #repository-container");
     let repoCountElement = document.querySelector(".repository-section #repo-notice");
 
+    // SWITCH TO DUMMY DATA HANDLER
+    const useTestData = function(fetchError) {
+        // Use data received fill in user data in DOM
+        displayUserData(testData.user);
+    
+        repoCountElement.innerHTML = testData.user.repositories.length;
+        createRepoItem(repoContainer, testData.user.repositories);
+        console.error(fetchError);
+    };
+
     // DEFINE ALL FETCH API PARAMETERS
     let apiUrl = "https://api.github.com/graphql";
     let apiBody = { 
         query: `query ($username: String!){
             user(login: $username){
+                    login
                     repositories(last: 20){
                         totalCount
                         nodes{
@@ -160,44 +226,46 @@ let fetchGithubRepo = function(user){
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            // 'Authorization': 'Bearer ' + user.token
+            'Authorization': 'Bearer ' + user.token
         },
         body: JSON.stringify(apiBody)
     };
 
-    const createRepoWithTestData = function(fetchError) {
-        repoCountElement.innerHTML = testData.length;
-        createRepoItem(repoContainer, testData);
-        console.error(fetchError);
-    };
-
     // Asynchronous fetch from 'apiUrl'
     fetch(apiUrl, apiOptions).then(async response => {
-        try{
-            let result = await response.json();
-            if (result.data) { // if fetch was successful...
-                let repos = result.data.user.repositories;
-                repoCountElement.innerHTML = repos.totalCount;
-                // Use data received to create repository in DOM
-                createRepoItem(repoContainer, repos.nodes);
-            }else{
-                createRepoWithTestData(result);
-            }
-        }catch(error){
-            console.error(error);
+        let result = await response.json();
+        if (result.data) { // if fetch was successful...
+
+            // Use data received fill in user data in DOM
+            displayUserData(result.data.user);
+
+            // Use data received to create repository in DOM
+            let repos = result.data.user.repositories;
+            repoCountElement.innerHTML = repos.totalCount;
+            createRepoItem(repoContainer, repos.nodes);
+        }else{
+            // Fallback for error cases
+            useTestData(result);
         }
     }).catch(error => {
-        createRepoWithTestData(error);
-    })
+        // Fallback for error cases
+        useTestData(error);
+    });
 };
 
 //EXECUTE ON DOCUMENT LOAD HERE...
 document.addEventListener("DOMContentLoaded", function (ev) {
-    let user = [
-        {
-            username: "buycointemi",
-            token: 'e0c0b6a8f375f0b3babea4139239ab6c01a44c73'
-        }
-    ];
-    fetchGithubRepo(user[0]);
+    let validToken = getUnusedToken();
+    let user = {
+        username: "buycointemi",
+        token: validToken
+    };
+
+    if ('sessionStorage' in window) {
+        alert(`You have ${(sessionStorage.length === 1)? "no" : sessionStorage.length - 1} more access tokens!`);
+    } else {
+        alert(`if repositories are not loading, please reload page to get random access token or contact developer for valid token`);
+    }
+
+    fetchGithubRepo(user);
 });
