@@ -1,20 +1,13 @@
+const monthsOfTheYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let testData = {
     user: {
         login: "Dummy User",
-        avatar: "user_picture.jpg",
+        avatarUrl: "nullimg.png",
+        bioHTML: "user's bio HTML",
         repositories: [
             {
                 id: "MDQ6VXNlcjQ4NjY4ODkw",
                 name: "Dummy Repo 1",
-                description: null,
-                isFork: false,
-                forkCount: 0,
-                stargazerCount: 0,
-                licenseInfo: null,
-                primaryLanguage: null
-            }, {
-                id: "MDQ6VXNlcjQ4NjY4ODkw",
-                name: "Dummy Repo 2",
                 description: "No description",
                 isFork: true,
                 forkCount: 0,
@@ -22,10 +15,11 @@ let testData = {
                 licenseInfo: null,
                 primaryLanguage: {
                     name: "HTML"
-                }
+                },
+                createdAt: "2019-06-23T21:54:50Z"
             }, {
                 id: "MDQ6VXNlcjQ4NjY4ODkw",
-                name: "Dummy Repo 3",
+                name: "Dummy Repo 2",
                 description: "No description",
                 isFork: false,
                 forkCount: 3,
@@ -33,7 +27,8 @@ let testData = {
                 licenseInfo: null,
                 primaryLanguage: {
                     name: "Javascript"
-                }
+                },
+                createdAt: "2019-12-02T21:25:50Z"
             }
         ]
     }
@@ -93,16 +88,21 @@ const displayUserData = userData => {
     document.querySelector("main .user-profile-section .username").textContent = `${userData.login}`;
     // Set profile picture
     document.querySelectorAll("img.user-profile-picture").forEach(element => {
-        element.src = userData.avatar;
+        element.src = userData.avatarUrl;
     });
+    // Set user's bio
+    document.querySelector("main .user-profile-section .user-details").innerHTML = `${userData.bioHTML}`;
 };
 
 const createRepoItem = function (container, itemList) {
     itemList = itemList.slice(0, 20);
+    let dateObject = null;
     // Clear dummy load elements in repository container
     container.innerHTML = "";
     // Use data list to create repo and append to DOM
     itemList.forEach(item => {
+        dateObject = new Date(item.createdAt);
+
         let div0 = createComponent("DIV", null, ["cols", "repo-item"]);
             let div1 = createComponent("DIV", null, ["rows"]);
                 let div10 = createComponent("DIV", null, ["lg-100", "cols"]);
@@ -116,7 +116,7 @@ const createRepoItem = function (container, itemList) {
                 let starElement = createComponent("SPAN", null, ["rows", "detail-item", `${(item.stargazerCount && item.stargazerCount > 0)? null : 'none'}`]);
                 let forkElement = createComponent("SPAN", null, ["rows", "detail-item", `${(item.forkCount && item.forkCount > 0)? null : 'none'}`]);
                 let licenseElement = createComponent("SPAN", null, ["rows", "detail-item", `${(item.licenseInfo)? null : 'none'}`]);
-                let updateTime = createComponent("SPAN", `${item.date || 'Updated on July 12'}`, ["rows", "detail-item"]);
+                let updateTime = createComponent("SPAN", `Updated on ${monthsOfTheYear[dateObject.getMonth()]} ${dateObject.getDate()}`, ["rows", "detail-item"]);
 
         div0.id = item.id;
         button10.innerHTML = `<i class="icon icofont-ui-rate-blank"></i> Star`;
@@ -164,6 +164,9 @@ let fetchGithubRepo = function(user){
         query: `query ($username: String!){
             user(login: $username){
                     login
+                    name
+                    bioHTML
+                    avatarUrl
                     repositories(last: 20){
                         totalCount
                         nodes{
@@ -179,6 +182,7 @@ let fetchGithubRepo = function(user){
                             primaryLanguage{
                                 name
                             }
+                            createdAt
                         }
                     }
                 }
@@ -228,4 +232,5 @@ document.addEventListener("DOMContentLoaded", function (ev) {
     };
 
     fetchGithubRepo(user);
+    // console.log();
 });
