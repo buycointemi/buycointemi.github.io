@@ -1,4 +1,3 @@
-let listOfValidToken = [null, 'MDQ6VXNlcjQ4NjY4ODkw', 'MDQ6VXNlcjQ5ajY4ODkw', 'MDQde4XNlcjQ4NjY4ODkw']; // variable used to create valid tokens
 let testData = {
     user: {
         login: "Dummy User",
@@ -84,43 +83,9 @@ const joinComponent = function (container, ...components) {
     return container;
 };
 
-const getUnusedToken = function () {
-    let returnToken = null;
-    // If sessionStorage is supported in user browser, use reliable method
-    if ('sessionStorage' in window) {
-        
-        if (sessionStorage.length === 0) { // tokens havent been set before, set it and return valid token...
-            let tokenList = listOfValidToken;
-            let lastIndex = tokenList.length - 1;
-
-            tokenList.forEach((token, index) => {
-                if (index !== 0) {
-                    sessionStorage.setItem(`token-${index}`, token);
-                }else{
-                    sessionStorage.setItem(`token-null`, token);
-                }
-            });
-
-            returnToken = tokenList[lastIndex];
-
-        }else if(sessionStorage.length === 1) { // All valid tokens have been used up
-            returnToken = null;
-        }else{
-            let lastIndex = sessionStorage.length - 1;
-            returnToken = sessionStorage.getItem(`token-${lastIndex}`);
-            sessionStorage.removeItem(`token-${lastIndex}`);
-            console.log(true);
-        }
-    }else{
-        // Else use alternative method...
-        // Select random token to use...
-        let randomIndex =  Math.round(Math.random() * (listOfValidToken.length - 2)) + 1; // [0, 1, 2,...n] + 1
-        returnToken = listOfValidToken[randomIndex];
-        console.log(randomIndex, returnToken);
-        listOfValidToken.pop();
-    }
-
-    return returnToken;    
+const activateToken = function (falseToken) {
+    if (typeof falseToken === 'string') return falseToken.split('-T-').join('');
+    return null;
 };
 
 const displayUserData = userData => {
@@ -218,6 +183,7 @@ let fetchGithubRepo = function(user){
                     }
                 }
             }`,
+            
         variables: { "username": `${user.username}`}
     };
 
@@ -255,17 +221,11 @@ let fetchGithubRepo = function(user){
 
 //EXECUTE ON DOCUMENT LOAD HERE...
 document.addEventListener("DOMContentLoaded", function (ev) {
-    let validToken = getUnusedToken();
+    let validToken = activateToken('d855-T-524a-T-160e-T-7746-T-5c98-T-5d32ccab16f-T-d92c-T-50e74');
     let user = {
         username: "buycointemi",
         token: validToken
     };
-
-    if ('sessionStorage' in window) {
-        alert(`You have ${(sessionStorage.length === 1)? "no" : sessionStorage.length - 1} more access tokens!`);
-    } else {
-        alert(`if repositories are not loading, please reload page to get random access token or contact developer for valid token`);
-    }
 
     fetchGithubRepo(user);
 });
