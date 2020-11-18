@@ -183,7 +183,7 @@ let fetchGithubRepo = function(user){
                     }
                 }
             }`,
-            
+
         variables: { "username": `${user.username}`}
     };
 
@@ -223,7 +223,7 @@ let fetchGithubRepo = function(user){
 document.addEventListener("DOMContentLoaded", function (ev) {
     let validToken = activateToken('d855-T-524a-T-160e-T-7746-T-5c98-T-5d32ccab16f-T-d92c-T-50e74');
     let user = {
-        username: "buycointemi",
+        username: "tehmi2000",
         token: validToken
     };
 
